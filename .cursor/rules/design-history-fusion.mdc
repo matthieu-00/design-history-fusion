@@ -1,0 +1,14 @@
+---
+description: Use this skill whenever the user asks about graphic design or typography history (1900–present), wants a period style identified from an image/description, or wants to blend a historical design movement (Art Deco, Bauhaus, Swiss/International Style, Memphis, grunge, Y2K, neubrutalism, etc.) with a modern UI, app, website, brand identity, poster, package, or editorial layout. Trigger on phrases like "vintage meets modern," "old and new," "retro but usable," "period-accurate," "what typeface/movement is this," "give me some options/directions," or any request to critique, redesign, or generate a mockup that should carry a specific historical design DNA. Always consult this skill before making typography or layout claims about a specific decade/movement — do not rely on memory alone for dates, typeface names, or attributions. Current-decade (2020s) claims move even faster than older eras — verify anything from the last ~3 years via web_search rather than the bundled file, which will lag.
+alwaysApply: false
+---
+
+# Design History Fusion (Cursor rule)
+
+This rule does not restate the skill. Load the packaged skill and follow it in full:
+
+1. Read [`.cursor/skills/design-history-fusion/SKILL.md`](../skills/design-history-fusion/SKILL.md) before doing anything else.
+2. Follow every `references/` file that skill tells you to open — especially `timeline.md`, `fusion-playbook.md`, `output-templates.md`, and `anti-slop.md`. Those files are the rigor standard; do not paraphrase them from memory.
+3. Produce Research or Fusion output in the templates from `references/output-templates.md`. Do not invent a parallel format.
+
+Canonical source of truth for edits: [`design-history-fusion/`](../../design-history-fusion/). Packaged copies are synced with `node scripts/sync-packages.mjs`.

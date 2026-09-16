@@ -1,0 +1,98 @@
+{
+  "skill_name": "design-history-fusion",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "What defined Swiss/International Style typography, and when did it emerge?",
+      "expected_output": "A sourced, movement-level answer drawn from timeline.md, with any specific date/name treated as needing verification rather than stated as unhedged fact.",
+      "expectations": [
+        "Reads references/timeline.md before answering",
+        "Answer covers grid logic, grotesque/neo-grotesque typography, and objectivity as core traits",
+        "Does not fabricate a specific foundry, exact release date, or designer attribution without flagging it as unverified or running a web_search to confirm",
+        "No padding; answer is precise and does not exceed what was asked",
+        "Does not ask a clarifying question before answering a factual question"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Redesign our fintech app's onboarding screen with Swiss Style meeting modern UI.",
+      "expected_output": "Goes straight to Mode 2a (era named explicitly) with no clarifying question about era, produces a full Fusion Spec.",
+      "expectations": [
+        "Does not ask what era the user wants, since Swiss Style was already named",
+        "Produces a Layer Map covering typography, color, grid, ornament, motion, and accessibility",
+        "Produces a Token Sheet with real hex values, not placeholders",
+        "Produces a completed Accessibility Verification table including the text-over-ornament composite contrast row",
+        "Includes a 2-4 line rationale mapping choices back to Swiss Style sources",
+        "Grid/spacing/motion tokens are treated as modern regardless of anchor era"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We're finalizing the brand identity for our new e-commerce launch. It needs to feel premium, maybe some vintage glamour. This is going live next month, no room to redo it later.",
+      "expected_output": "Recognizes this as high-stakes (final, launching, costly to reverse) and offers Mode 2b (three directions) unprompted, without being asked for options.",
+      "expectations": [
+        "Does not silently commit to a single era without offering options first",
+        "Offers three genuinely distinct directions per the 2b format (era, one-line rationale, compact layer summary each)",
+        "The three options vary on more than surface color: at least one of anchor era, intensity, or which layer carries the signal differs across them",
+        "Does not fully build out token sheets or accessibility tables for all three before the user picks one",
+        "Ends by letting the user choose (or combine) rather than proceeding to build unprompted"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Give me a few different directions for a 1920s Art Deco meets modern e-commerce site. I want options to look through.",
+      "expected_output": "Mode 2b triggered because options were explicitly requested, with three distinct, non-costume Deco directions.",
+      "expectations": [
+        "Produces exactly three options in the 2b template format",
+        "Each option's layer summary is a compact one-clause-per-layer format, not a full worked example",
+        "At least one option avoids the 'gold sunburst + black + party gradient' cliché named in anti-slop.md's table, or explicitly justifies using it",
+        "Does not render/build any of the three options before the user picks",
+        "Does not ask 'what era do you want' since Art Deco was already specified for the anchor, even though options were requested for direction variety"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Build a hero section for a record label site, 1970s meets modern, and go heavy on Art Deco-style sunburst ornament behind the headline text for visual impact.",
+      "expected_output": "Regression test for the stacking-order bug: ornament is placed so it does not degrade text legibility, and this is verified and documented rather than assumed.",
+      "expectations": [
+        "Does not place ornament/sunburst shapes directly behind or overlapping the headline text without addressing contrast",
+        "Either keeps ornament clear of the text's bounding box, or explicitly documents a z-index/scrim decision that preserves WCAG 1.4.3 contrast as rendered",
+        "The Accessibility Verification table includes the text-over-ornament composite contrast row, completed with an actual assessment rather than left blank or copied from the template unfilled",
+        "If a contrast conflict is found, the fix is documented in the Rationale section rather than silently changed with no explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Make our SaaS dashboard feel a bit more 2010s in a warm, inviting way. Just try something.",
+      "expected_output": "Low-stakes exploration: proceeds with Mode 2a directly, infers a sensible interpretation, states the assumption, does not gate on a clarifying question.",
+      "expectations": [
+        "Does not ask a clarifying question before producing a direction, since this reads as low-stakes exploration ('just try something')",
+        "States the inferred assumption (e.g. which 2010s current it's drawing from) plainly in the output",
+        "Per anti-slop.md, avoids defaulting to flat pastel-gradient-blob SaaS cliché without a stated reason, or explicitly justifies using it for this brief",
+        "Produces a Fusion Spec with Layer Map, Token Sheet, and Accessibility Verification"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "What's the actual difference between Bauhaus and Constructivism? I keep seeing them used interchangeably.",
+      "expected_output": "A precise research-mode answer distinguishing the pedagogical (Bauhaus) vs. political (Constructivist) substance, matching anti-slop.md's named distinction for this era.",
+      "expectations": [
+        "Answer distinguishes Bauhaus's pedagogical/preliminary-course context from Constructivism's political/VKhUTEMAS context rather than treating them as synonyms",
+        "Does not flatten both into generic 'geometric shapes + primary colors' framing",
+        "Cites references/timeline.md and/or references/anti-slop.md's distinction rather than inventing the comparison from scratch",
+        "Flags any specific date, name, or attribution not already verified as needing a web_search check before being used in a deliverable"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "We don't have any design-system or accessibility plugin skills installed here. Do a single-direction Memphis-meets-modern fusion for a kids' education app.",
+      "expected_output": "Confirms the skill still completes the fusion and its own Accessibility Verification table without assuming design:design-handoff or design:accessibility-review ran, and states plainly that the handoff/audit step was skipped rather than implying it happened.",
+      "expectations": [
+        "Does not claim or imply that an engineering handoff spec or full accessibility audit was produced when those plugin skills are unavailable",
+        "States explicitly that the handoff/audit step was unavailable rather than silently omitting mention of it",
+        "Still completes this skill's own Layer Map, Token Sheet, and Accessibility Verification table, since those don't depend on the optional plugin skills",
+        "Grounds the Memphis references in Sottsass-era furniture/object-derived pattern logic rather than the generic 'neon squiggle/confetti' cliché named in anti-slop.md, or justifies using the cliché deliberately"
+      ]
+    }
+  ]
+}

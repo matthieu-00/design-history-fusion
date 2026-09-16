@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canton — Onboarding · Swiss Style × modern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #A50E2C;
+      --color-accent: #A50E2C;
+      --color-background: #F2F2EE;
+      --color-text: #111111;
+      --color-muted: #4A4A46;
+      --color-rule: #111111;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 16px;
+      --space-4: 24px;
+      --space-5: 32px;
+      --space-6: 48px;
+      --space-7: 64px;
+      --radius: 0;
+      --shadow: none;
+      --motion: 180ms;
+      --ease: ease-out;
+      --focus: 2px solid #111111;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.45;
+    }
+    :focus-visible {
+      outline: var(--focus);
+      outline-offset: 3px;
+    }
+    .app {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: var(--space-5) var(--space-4) var(--space-7);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--space-4);
+      row-gap: 0;
+    }
+    .mast {
+      grid-column: 1 / span 12;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--space-4);
+      align-items: end;
+      border-bottom: 2px solid var(--color-rule);
+      padding-bottom: var(--space-3);
+      margin-bottom: var(--space-6);
+    }
+    .wordmark {
+      grid-column: 1 / span 4;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .step-index {
+      grid-column: 9 / span 4;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0;
+      color: var(--color-muted);
+    }
+    .ornament {
+      grid-column: 12 / span 1;
+      justify-self: end;
+      width: 28px;
+      height: 28px;
+      background: var(--color-primary);
+      z-index: 0;
+      margin-bottom: var(--space-6);
+    }
+    .display {
+      grid-column: 1 / span 8;
+      z-index: 1;
+      margin: 0 0 var(--space-4);
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      max-width: 14ch;
+    }
+    .lede {
+      grid-column: 1 / span 7;
+      z-index: 1;
+      margin: 0 0 var(--space-6);
+      font-size: 18px;
+      font-weight: 400;
+      max-width: 42ch;
+      color: var(--color-text);
+    }
+    .progress {
+      grid-column: 1 / span 12;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+    .progress ol {
+      grid-column: 1 / span 12;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--color-rule);
+    }
+    .progress li {
+      padding-top: var(--space-3);
+      border-top: 4px solid transparent;
+    }
+    .progress li[aria-current="step"] { border-top-color: var(--color-primary); }
+    .progress li:not([aria-current="step"]) { border-top-color: #D4D4CE; }
+    .num {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      margin-bottom: var(--space-2);
+    }
+    .progress h2 {
+      margin: 0 0 var(--space-2);
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .progress p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--color-muted);
+    }
+    form {
+      grid-column: 1 / span 7;
+      display: grid;
+      gap: var(--space-4);
+    }
+    label {
+      display: grid;
+      gap: var(--space-2);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    input {
+      font: inherit;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--color-text);
+      background: var(--color-background);
+      border: 0;
+      border-bottom: 1px solid var(--color-rule);
+      border-radius: var(--radius);
+      padding: 12px 0;
+      min-height: 48px;
+      box-shadow: var(--shadow);
+    }
+    .aside {
+      grid-column: 9 / span 4;
+      align-self: start;
+      border-left: 1px solid var(--color-rule);
+      padding-left: var(--space-4);
+    }
+    .aside h2 {
+      margin: 0 0 var(--space-3);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .aside p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--color-muted);
+    }
+    .actions {
+      grid-column: 1 / span 12;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+      padding-top: var(--space-5);
+      border-top: 2px solid var(--color-rule);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      min-width: 48px;
+      padding: 0 24px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 0;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background-color var(--motion) var(--ease), color var(--motion) var(--ease);
+    }
+    .btn-primary {
+      background: var(--color-primary);
+      color: #FFFFFF;
+    }
+    .btn-primary:hover { background: #8E0C26; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-text);
+      border: 1px solid var(--color-text);
+    }
+    .spec {
+      background: #FFFFFF;
+      color: #111111;
+      border-top: 8px solid #111111;
+      padding: 64px 24px 96px;
+    }
+    .spec-inner { max-width: 1120px; margin: 0 auto; }
+    .spec h2 {
+      font-size: 28px;
+      letter-spacing: -0.03em;
+      margin: 0 0 8px;
+    }
+    .spec .meta { color: #4A4A46; margin: 0 0 32px; max-width: 72ch; }
+    .spec h3 { margin: 32px 0 12px; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid #D4D4CE;
+      padding: 10px 12px 10px 0;
+    }
+    th { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+    @media (max-width: 800px) {
+      .display, .lede, form, .aside, .ornament { grid-column: 1 / span 12; }
+      .aside { border-left: 0; padding-left: 0; border-top: 1px solid var(--color-rule); padding-top: var(--space-4); margin-top: var(--space-4); }
+      .progress ol { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="mast">
+      <p class="wordmark">Canton</p>
+      <p class="step-index">Onboarding · 01 / 03</p>
+    </header>
+    <div class="ornament" aria-hidden="true" title="Geometric accent, clear of type"></div>
+    <h1 class="display">Open a reserve in three steps.</h1>
+    <p class="lede">Canton holds multi-currency savings against a stated purpose — rent, tax, runway. No cards, no photography, no elevation. Identity first, then the account.</p>
+    <nav class="progress" aria-label="Onboarding steps">
+      <ol>
+        <li aria-current="step">
+          <span class="num">01</span>
+          <h2>Verify identity</h2>
+          <p>Legal name and residency. Used only to open the reserve.</p>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <h2>Link an account</h2>
+          <p>One source bank. You can add others after the first transfer.</p>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <h2>Name the reserve</h2>
+          <p>A purpose and a target date. The ledger stays that specific.</p>
+        </li>
+      </ol>
+    </nav>
+    <form>
+      <label>Legal name
+        <input type="text" name="name" autocomplete="name" value="S. Keller">
+      </label>
+      <label>Country of residence
+        <input type="text" name="country" autocomplete="country-name" value="Switzerland">
+      </label>
+    </form>
+    <aside class="aside">
+      <h2>Why this data</h2>
+      <p>Swiss-style objectivity: only what the step requires. No marketing module, no testimonial rail. The red square is the sole ornament, parked on the grid’s last column so it never shares a bounding box with the headline.</p>
+    </aside>
+    <div class="actions">
+      <a class="btn btn-ghost" href="#spec">Back</a>
+      <button class="btn btn-primary" type="button">Continue</button>
+    </div>
+  </main>
+
+  <section class="spec" id="spec">
+    <div class="spec-inner">
+      <h2>Fusion Spec: Canton onboarding</h2>
+      <p class="meta"><strong>Anchor era:</strong> Swiss / International Typographic Style (1950s, Zürich/Basel pedagogy) — the brief named Swiss Style explicitly, and a fintech onboarding screen is a natural fit for Müller-Brockmann’s information-first grid rather than American Mid-Century decoration.<br>
+      <strong>Intensity:</strong> confident<br>
+      <strong>Assumption:</strong> Mode 2a (era named). Frontend-design skill was available in this session and used as the usability cross-check.</p>
+
+      <h3>Layer Map</h3>
+      <table>
+        <thead><tr><th>Layer</th><th>Source</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Display typography</td><td>era</td><td>Neo-grotesque. IBM Plex Sans is a contemporary neo-grotesque stand-in (not a 1957 face). Era-native references, already in timeline.md: Helvetica (Max Miedinger, 1957) and Univers (Adrian Frutiger, 1957).</td></tr>
+          <tr><td>Body/UI typography</td><td>era / modern weights</td><td>Same neo-grotesque family, modern weight range (400–700) for screen UI. Flush-left / ragged-right.</td></tr>
+          <tr><td>Color</td><td>era, contrast-adjusted</td><td>Poster red + black + cool paper. Not warm-cream/terracotta AI default; not American MCM pastels. See token sheet.</td></tr>
+          <tr><td>Grid/spatial rhythm</td><td>era, ported to a modern 12-column CSS grid</td><td>Modular columns, hairline rules, active negative space. Swiss grid logic ports directly.</td></tr>
+          <tr><td>Texture/ornament</td><td>era, used once</td><td>Single hard-edged red square in the last column. No starbursts, no rounded photo cards, no shadow.</td></tr>
+          <tr><td>Motion</td><td>modern</td><td>180ms ease-out on button hover only. Pre-1990 Swiss Style has no native motion language.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Token Sheet</h3>
+      <table>
+        <thead><tr><th>Token</th><th>Value</th><th>Source/rationale</th></tr></thead>
+        <tbody>
+          <tr><td>color/primary</td><td>#A50E2C</td><td>Era-derived vermillion, darkened from a brighter poster red so white type on the button passes AA (7.78:1).</td></tr>
+          <tr><td>color/accent</td><td>#A50E2C</td><td>Same red — Swiss restraint is a short palette, not a second accent.</td></tr>
+          <tr><td>color/background</td><td>#F2F2EE</td><td>Cool paper. Avoids the warm-cream (#F5EDE3-class) AI default.</td></tr>
+          <tr><td>color/text</td><td>#111111</td><td>Near-black for objectivity; 16.82:1 on background.</td></tr>
+          <tr><td>spacing/scale</td><td>4 / 8 / 16 / 24 / 32 / 48 / 64px</td><td>modern, always</td></tr>
+          <tr><td>radius</td><td>0</td><td>Swiss Style does not round corners; hard edges are the period signal.</td></tr>
+          <tr><td>shadow/elevation</td><td>none — era doesn't use elevation</td><td>Depth comes from rules and type scale, not drop shadows.</td></tr>
+          <tr><td>motion/duration</td><td>180ms</td><td>modern, always</td></tr>
+          <tr><td>motion/easing</td><td>ease-out</td><td>modern, always</td></tr>
+          <tr><td>type/display</td><td>IBM Plex Sans, 700, −0.04em tracking</td><td>Neo-grotesque category; see Layer Map for 1957 references.</td></tr>
+          <tr><td>type/body</td><td>IBM Plex Sans, 400–600</td><td>Same family at UI sizes.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Accessibility Verification</h3>
+      <table>
+        <thead><tr><th>Check</th><th>Requirement</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Body text contrast</td><td>≥ 4.5:1 (WCAG 1.4.3)</td><td>16.82:1 (#111111 on #F2F2EE) — ✅ · muted 7.93:1 (#4A4A46 on #F2F2EE) — ✅</td></tr>
+          <tr><td>Large text / display contrast</td><td>≥ 3:1 (WCAG 1.4.3)</td><td>16.82:1 — ✅</td></tr>
+          <tr><td>UI component contrast</td><td>≥ 3:1 (WCAG 1.4.11)</td><td>White on primary button 7.78:1 — ✅ · ghost border #111111 on #F2F2EE 16.82:1 — ✅</td></tr>
+          <tr><td>Touch targets</td><td>≥ 44×44px (WCAG 2.5.5)</td><td>Buttons and inputs min-height 48px — ✅</td></tr>
+          <tr><td>Focus indicator visible</td><td>WCAG 2.4.7</td><td>2px #111111 outline, 3px offset — ✅</td></tr>
+          <tr><td>Motion respects <code>prefers-reduced-motion</code></td><td>—</td><td>Transitions disabled when requested — ✅</td></tr>
+          <tr><td>Text-over-ornament contrast (composite, not nominal background)</td><td>≥ 4.5:1 body / 3:1 large (WCAG 1.4.3)</td><td>Ornament is a 28×28px square in column 12; it does not share a bounding box with any text. Composite check equals nominal 16.82:1 — ✅</td></tr>
+        </tbody>
+      </table>
+      <p class="meta">Fix applied: primary red darkened from a brighter poster vermillion to #A50E2C so white button labels pass AA. Hover uses #8E0C26 (white 9.41:1).</p>
+
+      <h3>Rationale</h3>
+      <p>Swiss Style was named in the brief, so this is Mode 2a with no era question. The screen borrows Müller-Brockmann’s modular grid, flush-left grotesque, and a single geometric accent — not American 1950s starbursts, which anti-slop.md flags as a different tradition. Motion, spacing, and tap targets stay modern because pre-1990 Swiss pedagogy has nothing to say about screens. The product is a named reserve (Canton), so the copy is ledger-specific rather than generic “fintech onboarding” chrome.</p>
+    </div>
+  </section>
+</body>
+</html>

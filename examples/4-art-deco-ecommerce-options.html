@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nord — Art Deco × modern e-commerce (three directions)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=League+Spartan:wght@500;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #151B28;
+      --paper: #E7E2D6;
+      --cream: #E8E4DC;
+      --signal: #9E2A2B;
+      --steel: #2A3344;
+      --space-scale: 4px;
+      --radius: 0;
+      --motion: 240ms;
+      --ease: ease-out;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: "Source Sans 3", "Helvetica Neue", sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+    }
+    :focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; }
+    a { color: inherit; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 32px 24px 0; }
+    .kicker {
+      font-family: "League Spartan", sans-serif;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+    h1.page-title {
+      font-family: "League Spartan", sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 5vw, 56px);
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin: 0 0 16px;
+    }
+    .intro { max-width: 62ch; color: #C9C3B8; margin: 0 0 40px; }
+    .options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+    .option {
+      border: 1px solid #3A4354;
+      padding: 20px;
+      min-height: 100%;
+      background: #10151F;
+    }
+    .option h2 {
+      font-family: "League Spartan", sans-serif;
+      font-size: 18px;
+      margin: 0 0 8px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .thumb {
+      height: 120px;
+      margin: 0 0 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .thumb-subtle {
+      background: #E7E2D6;
+      color: #151B28;
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .thumb-subtle:after {
+      content: "";
+      position: absolute;
+      top: 12px; left: 12px; right: 12px;
+      height: 8px;
+      background: linear-gradient(90deg, #151B28 0 8px, transparent 8px 16px, #151B28 16px 24px, transparent 24px);
+      opacity: 0.35;
+    }
+    .thumb-cassandre {
+      background: radial-gradient(ellipse at 50% 0%, #3A465C 0%, #0E1218 62%);
+    }
+    .thumb-cassandre:before {
+      content: "";
+      position: absolute;
+      left: 50%; bottom: 0;
+      width: 2px; height: 70%;
+      background: #E8E4DC;
+      transform: translateX(-50%);
+    }
+    .thumb-cassandre:after {
+      content: "";
+      position: absolute;
+      left: 50%; top: 18px;
+      width: 10px; height: 10px;
+      background: #E8E4DC;
+      clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      transform: translateX(-50%);
+    }
+    .thumb-max {
+      background: #0A0A0A;
+      color: #D4AF37;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Bodoni Moda", serif;
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .thumb-max span {
+      border: 2px solid #D4AF37;
+      padding: 8px 16px;
+    }
+    .why, .layers { font-size: 14px; color: #C9C3B8; margin: 0 0 10px; }
+    .layers { font-size: 13px; line-height: 1.45; }
+    .pick-note { font-size: 13px; color: #A8A296; margin: 0 0 48px; max-width: 70ch; }
+
+    .shop-label {
+      font-family: "League Spartan", sans-serif;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 11px;
+      border-top: 1px solid #3A4354;
+      padding-top: 48px;
+      margin: 0 0 8px;
+    }
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: 520px;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: end;
+      overflow: hidden;
+      margin: 0 -24px 48px;
+      padding: 48px 24px 40px;
+      background: radial-gradient(ellipse at 50% 0%, #2A3344 0%, #0E1218 58%);
+    }
+    .rails {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      pointer-events: none;
+    }
+    .rails span {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 2px;
+      height: 78%;
+      background: #C9C3B8;
+      opacity: 0.35;
+      transform-origin: bottom center;
+    }
+    .rails span:nth-child(1) { transform: translateX(-50%) rotate(-18deg); }
+    .rails span:nth-child(2) { transform: translateX(-50%) rotate(-6deg); }
+    .rails span:nth-child(3) { transform: translateX(-50%) rotate(6deg); }
+    .rails span:nth-child(4) { transform: translateX(-50%) rotate(18deg); }
+    .star {
+      position: absolute;
+      z-index: 0;
+      top: 36px;
+      left: 50%;
+      width: 18px; height: 18px;
+      transform: translateX(-50%);
+      background: var(--cream);
+      clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 22ch;
+      margin: 0 auto;
+    }
+    .hero-copy p {
+      font-family: "League Spartan", sans-serif;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin: 0 0 16px;
+    }
+    .hero-copy h2 {
+      font-family: "League Spartan", sans-serif;
+      font-weight: 800;
+      font-size: clamp(42px, 8vw, 88px);
+      letter-spacing: 0.06em;
+      margin: 0 0 16px;
+      line-height: 0.9;
+    }
+    .hero-copy .sub {
+      font-size: 16px;
+      color: #C9C3B8;
+      margin: 0 auto 24px;
+      max-width: 36ch;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      min-width: 48px;
+      padding: 0 24px;
+      background: var(--signal);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: "League Spartan", sans-serif;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 700;
+      border: 0;
+      cursor: pointer;
+      transition: background-color var(--motion) var(--ease);
+    }
+    .btn:hover { background: #7F1F20; }
+    .frame {
+      display: grid;
+      grid-template-columns: 80px 1fr 80px;
+      gap: 0;
+      margin-bottom: 64px;
+    }
+    .frame .edge {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: "League Spartan", sans-serif;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: #A8A296;
+      padding: 8px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: #3A4354;
+      border: 1px solid #3A4354;
+    }
+    article {
+      background: var(--navy);
+      padding: 24px;
+    }
+    article h3 {
+      font-family: "League Spartan", sans-serif;
+      font-size: 20px;
+      margin: 0 0 8px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .swatch {
+      height: 120px;
+      margin-bottom: 16px;
+      background:
+        linear-gradient(180deg, #3A465C 0%, #151B28 100%);
+    }
+    .swatch.b { background: linear-gradient(180deg, #5C5040 0%, #1A1712 100%); }
+    .swatch.c { background: linear-gradient(180deg, #4A2A2A 0%, #1A1010 100%); }
+    .price { font-size: 14px; color: #C9C3B8; margin: 0; }
+    .spec {
+      background: var(--paper);
+      color: var(--navy);
+      padding: 64px 24px 96px;
+    }
+    .spec-inner { max-width: 1180px; margin: 0 auto; }
+    .spec h2 { font-family: "League Spartan", sans-serif; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 12px; }
+    .spec .meta { margin: 0 0 28px; max-width: 75ch; }
+    .spec h3 { margin: 28px 0 12px; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #C9C3B8; padding: 10px 12px 10px 0; }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+    @media (max-width: 900px) {
+      .options, .grid, .frame { grid-template-columns: 1fr; }
+      .frame .edge { writing-mode: horizontal-tb; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kicker">Mode 2b · options requested</p>
+    <h1 class="page-title">Nord. Three Deco directions, not three skins.</h1>
+    <p class="intro">Art Deco is already named, so this is not an era question. Options were asked for, so nothing is fully built until a direction is picked. Each option below varies intensity and which layer carries the historical signal. At least one avoids the gold-sunburst-on-black party gradient named in anti-slop.md.</p>
+
+    <div class="options">
+      <article class="option">
+        <div class="thumb thumb-subtle" aria-hidden="true">Quiet shop</div>
+        <h2>Option 1 — Edge signal</h2>
+        <p class="why"><strong>Why this one’s in contention:</strong> A checkout-heavy shop may want Deco as a nod, not a costume — period DNA only in dividers and palette, so product photos and forms stay fully contemporary.</p>
+        <p class="layers"><strong>Layer summary:</strong> Type: modern Source Sans 3 throughout · Color: navy/paper, no metallic · Grid: ordinary responsive product grid · Ornament: one ziggurat hairline as a section divider · Motion: functional fade, 200ms</p>
+      </article>
+      <article class="option">
+        <div class="thumb thumb-cassandre" aria-hidden="true"></div>
+        <h2>Option 2 — Cassandre restraint</h2>
+        <p class="why"><strong>Why this one’s in contention:</strong> Cassandre’s 1927 <em>Étoile du Nord</em> is steel, perspective, and type corralled to the edge — decorative but disciplined, the anti-slop alternative to gold sunburst maximalism.</p>
+        <p class="layers"><strong>Layer summary:</strong> Type: geometric sans display (Futura family) · Color: night steel + one signal red · Grid: centered vanishing-point hero, type as a poster border · Ornament: star + rails, not a sunburst · Motion: slow ceremonial fade-in</p>
+      </article>
+      <article class="option">
+        <div class="thumb thumb-max" aria-hidden="true"><span>NORD</span></div>
+        <h2>Option 3 — Ceremony</h2>
+        <p class="why"><strong>Why this one’s in contention:</strong> If Nord is selling evening goods, the loud luxury register is a legitimate brief — this is the cliché-adjacent option, used deliberately so Options 1–2 can refuse it.</p>
+        <p class="layers"><strong>Layer summary:</strong> Type: Didone display (Bodoni-class) · Color: black + metallic gold, stated as the Pinterest-famous Deco shorthand · Grid: symmetrical framed sections · Ornament: ziggurat frames and a sunburst used as a divider, kept clear of type · Motion: scale-in reveal</p>
+      </article>
+    </div>
+    <p class="pick-note">A live session would stop here and wait for a pick (or “combine 1 and 2”). For this repository example, Option 2 is rendered below so the page still includes a full Layer Map / Token Sheet / Accessibility table — not because the other two were silently discarded.</p>
+
+    <p class="shop-label">Rendered after pick · Option 2</p>
+  </div>
+
+  <section class="hero" aria-label="Nord storefront hero">
+    <div class="rails" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="star" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p>Paris — Bruxelles — Amsterdam</p>
+      <h2>NORD</h2>
+      <p class="sub">Travel coats and cases. Composition borrowed from Cassandre’s night railway posters; checkout remains a modern grid.</p>
+      <a class="btn" href="#spec">Shop the line</a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="frame">
+      <div class="edge">Compagnie des formes utiles</div>
+      <div class="grid">
+        <article>
+          <div class="swatch" aria-hidden="true"></div>
+          <h3>Nord Fold Coat</h3>
+          <p class="price">€640 · midnight wool</p>
+        </article>
+        <article>
+          <div class="swatch b" aria-hidden="true"></div>
+          <h3>Rail Case</h3>
+          <p class="price">€290 · vegetable tan</p>
+        </article>
+        <article>
+          <div class="swatch c" aria-hidden="true"></div>
+          <h3>Night Glove</h3>
+          <p class="price">€120 · unlined</p>
+        </article>
+      </div>
+      <div class="edge">Pullman goods, this season</div>
+    </div>
+  </div>
+
+  <section class="spec" id="spec">
+    <div class="spec-inner">
+      <h2>Fusion Spec: Nord storefront (Option 2)</h2>
+      <p class="meta"><strong>Anchor era:</strong> 1920s Art Deco, Cassandre/Loupot commercial-poster register — not Bauhaus austerity, not gold-sunburst pastiche.<br>
+      <strong>Intensity:</strong> confident<br>
+      <strong>Frontend-design skill:</strong> available this session; used as the usability cross-check.</p>
+
+      <h3>Layer Map</h3>
+      <table>
+        <thead><tr><th>Layer</th><th>Source</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Display typography</td><td>era</td><td>Geometric sans. League Spartan as a webfont stand-in for the Futura/Kabel family. Futura: Paul Renner, Bauersche Giesserei, 1927 (verified this session). Not a Didone; that register is reserved for Option 3.</td></tr>
+          <tr><td>Body/UI typography</td><td>modern</td><td>Source Sans 3, 400–700. Historical geometric display at small sizes fails real users.</td></tr>
+          <tr><td>Color</td><td>era, contrast-adjusted</td><td>Étoile du Nord’s steel-grey night (estate description: dark monochrome, airbrushed steel, dense foreground shadow) plus one signal red drawn from the sibling Nord Express firebox, used only on the CTA. No gold.</td></tr>
+          <tr><td>Grid/spatial rhythm</td><td>era translated</td><td>Centered vanishing-point hero; product grid is modern. Cassandre’s type-as-border becomes the vertical edge captions, not a literal antique frame on every card.</td></tr>
+          <tr><td>Texture/ornament</td><td>era, used once</td><td>Four perspective rails + a five-point star at the vanishing point. Explicitly not a sunburst. Rails sit behind the hero copy but do not cross glyph bounding boxes; star is above the headline.</td></tr>
+          <tr><td>Motion</td><td>modern</td><td>240ms ease-out on the CTA. No invented “1920s motion.”</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Token Sheet</h3>
+      <table>
+        <thead><tr><th>Token</th><th>Value</th><th>Source/rationale</th></tr></thead>
+        <tbody>
+          <tr><td>color/primary</td><td>#9E2A2B</td><td>Signal red, darkened for white-label AA (7.45:1).</td></tr>
+          <tr><td>color/accent</td><td>#E8E4DC</td><td>Star and display type on night steel.</td></tr>
+          <tr><td>color/background</td><td>#151B28</td><td>Night steel, Étoile du Nord register — not black+gold.</td></tr>
+          <tr><td>color/text</td><td>#E8E4DC</td><td>13.58:1 on #151B28. Spec panel inverts to #151B28 on #E7E2D6 (13.33:1).</td></tr>
+          <tr><td>spacing/scale</td><td>4 / 8 / 16 / 24 / 32 / 48 / 64px</td><td>modern, always</td></tr>
+          <tr><td>radius</td><td>0</td><td>Deco geometry is faceted, not squirreled.</td></tr>
+          <tr><td>shadow/elevation</td><td>none — era doesn't use elevation</td><td>Depth is perspective drawing, not Material shadow.</td></tr>
+          <tr><td>motion/duration</td><td>240ms</td><td>modern, always</td></tr>
+          <tr><td>motion/easing</td><td>ease-out</td><td>modern, always</td></tr>
+          <tr><td>type/display</td><td>League Spartan, 800</td><td>Geometric sans category; Futura 1927 is the cited era face, not this webfont.</td></tr>
+          <tr><td>type/body</td><td>Source Sans 3, 400–700</td><td>modern humanist-adjacent sans for UI.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Accessibility Verification</h3>
+      <table>
+        <thead><tr><th>Check</th><th>Requirement</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Body text contrast</td><td>≥ 4.5:1 (WCAG 1.4.3)</td><td>13.58:1 (#E8E4DC on #151B28); muted #C9C3B8 still ≥ 4.5:1 on navy — ✅</td></tr>
+          <tr><td>Large text / display contrast</td><td>≥ 3:1 (WCAG 1.4.3)</td><td>13.58:1 — ✅</td></tr>
+          <tr><td>UI component contrast</td><td>≥ 3:1 (WCAG 1.4.11)</td><td>White on #9E2A2B = 7.45:1 — ✅</td></tr>
+          <tr><td>Touch targets</td><td>≥ 44×44px (WCAG 2.5.5)</td><td>CTA min-height 48px — ✅</td></tr>
+          <tr><td>Focus indicator visible</td><td>WCAG 2.4.7</td><td>2px cream outline, 3px offset — ✅</td></tr>
+          <tr><td>Motion respects <code>prefers-reduced-motion</code></td><td>—</td><td>Transitions disabled when requested — ✅</td></tr>
+          <tr><td>Text-over-ornament contrast (composite, not nominal background)</td><td>≥ 4.5:1 body / 3:1 large (WCAG 1.4.3)</td><td>Star sits above the headline; rails converge behind the hero but are 2px × 35% opacity and do not enter the type box. Headline reads on the radial steel field (#2A3344 → #0E1218), not on a gold ray. Composite ≥ 13:1 — ✅. Gold sunburst was refused (Option 3 only, and even there as a divider, not under type).</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Rationale</h3>
+      <p>The brief asked for options, so the page leads with three directions that differ on intensity and which layer carries Deco — not three palettes. Option 2 is the anti-cliché pick: Cassandre’s 1927 night railway (steel, vanishing point, type at the margin) instead of gold sunburst + black. Type is a geometric sans because that is Deco’s commercial letter, not a costume Didone. Motion stays modern; the ceremony is compositional, not animated glitter.</p>
+    </div>
+  </section>
+</body>
+</html>

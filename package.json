@@ -1,0 +1,14 @@
+{
+  "name": "design-history-fusion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Agent skill: historically accurate graphic-design/typography research fused with modern UI.",
+  "license": "MIT",
+  "scripts": {
+    "sync-packages": "node scripts/sync-packages.mjs",
+    "screenshots": "node scripts/screenshot.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
+}

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kindling — 2010s Material dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #1B3A2F;
+      --color-accent: #1565C0;
+      --color-background: #F6F3EE;
+      --color-surface: #FFFBFA;
+      --color-text: #3E2723;
+      --color-muted: #5D4037;
+      --color-error: #B71C1C;
+      --elev-2: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.20), 0 1px 5px 0 rgba(0,0,0,0.12);
+      --elev-8: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.20);
+      --radius: 4px;
+      --motion: 200ms;
+      --ease: cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      background: var(--color-background);
+      color: var(--color-text);
+    }
+    :focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+    .shell {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+    nav {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      padding: 24px 16px 32px;
+    }
+    .brand {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin: 0 16px 32px;
+    }
+    nav a {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 16px;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    nav a[aria-current="page"] { background: rgba(255,255,255,0.12); }
+    nav a:hover { background: rgba(255,255,255,0.08); }
+    main { padding: 24px 32px 64px; }
+    header.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    header.top h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 400;
+    }
+    .fab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      min-width: 48px;
+      padding: 0 20px;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border: 0;
+      border-radius: 24px;
+      box-shadow: var(--elev-8);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: box-shadow var(--motion) var(--ease), transform var(--motion) var(--ease);
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .card {
+      background: var(--color-surface);
+      border-radius: var(--radius);
+      box-shadow: var(--elev-2);
+      padding: 20px 20px 16px;
+    }
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+    .metric {
+      font-size: 32px;
+      font-weight: 400;
+      margin: 0 0 8px;
+    }
+    .delta { margin: 0; font-size: 13px; color: var(--color-muted); }
+    .panel {
+      background: var(--color-surface);
+      border-radius: var(--radius);
+      box-shadow: var(--elev-2);
+      padding: 8px 0 16px;
+      margin-bottom: 16px;
+    }
+    .panel h2 {
+      margin: 12px 20px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    table.data th, table.data td {
+      text-align: left;
+      padding: 14px 20px;
+      border-bottom: 1px solid #E8E0D8;
+    }
+    table.data th {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 8px;
+      border-radius: 12px;
+      background: #E8F0EE;
+      color: var(--color-primary);
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .chip.warn { background: #FDECEA; color: var(--color-error); }
+    .bars {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 8px 16px;
+      align-items: center;
+      padding: 8px 20px 0;
+    }
+    .bar {
+      height: 8px;
+      background: #E8E0D8;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+      background: var(--color-primary);
+      border-radius: 2px;
+    }
+    .spec {
+      grid-column: 1 / -1;
+      background: #FFFFFF;
+      color: #263238;
+      padding: 64px 32px 96px;
+      border-top: 1px solid #E0E0E0;
+    }
+    .spec-inner { max-width: 980px; margin: 0 auto; }
+    .spec h2 { font-size: 22px; font-weight: 500; margin: 0 0 8px; }
+    .spec .meta { margin: 0 0 24px; max-width: 75ch; color: #455A64; }
+    .spec h3 { margin: 28px 0 12px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+    table.spec-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    table.spec-table th, table.spec-table td {
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid #CFD8DC;
+      padding: 10px 12px 10px 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+    @media (max-width: 900px) {
+      .shell { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav aria-label="Primary">
+      <p class="brand">Kindling</p>
+      <a href="#spec" aria-current="page">Overview</a>
+      <a href="#spec">Households</a>
+      <a href="#spec">Notes</a>
+      <a href="#spec">Settings</a>
+    </nav>
+    <main>
+      <header class="top">
+        <div>
+          <h1>Tuesday overview</h1>
+          <p style="margin:4px 0 0;color:var(--color-muted);font-size:14px;">Warm 2010s Material — elevation and ink, not pastel blobs.</p>
+        </div>
+        <a class="fab" href="#spec">Log a visit</a>
+      </header>
+      <section class="cards" aria-label="Totals">
+        <article class="card">
+          <h2>Active households</h2>
+          <p class="metric">128</p>
+          <p class="delta">+6 this month</p>
+        </article>
+        <article class="card">
+          <h2>Notes due this week</h2>
+          <p class="metric">11</p>
+          <p class="delta">3 overdue</p>
+        </article>
+        <article class="card">
+          <h2>Volunteer hours</h2>
+          <p class="metric">64</p>
+          <p class="delta">of 80 promised</p>
+        </article>
+      </section>
+      <section class="panel">
+        <h2>Hours by neighbourhood</h2>
+        <div class="bars">
+          <span>East yard</span><div class="bar" aria-hidden="true"><span style="width:82%"></span></div>
+          <span>Riverside</span><div class="bar" aria-hidden="true"><span style="width:64%"></span></div>
+          <span>North mill</span><div class="bar" aria-hidden="true"><span style="width:40%"></span></div>
+        </div>
+      </section>
+      <section class="panel">
+        <h2>Households needing a note</h2>
+        <table class="data">
+          <thead>
+            <tr><th>Household</th><th>Last visit</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>P. Nguyen</td><td>12 Sep</td><td><span class="chip warn">Overdue</span></td></tr>
+            <tr><td>M. Alvarez</td><td>8 Sep</td><td><span class="chip">Due Fri</span></td></tr>
+            <tr><td>The Okonkwo house</td><td>3 Sep</td><td><span class="chip">Due Fri</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <section class="spec" id="spec">
+    <div class="spec-inner">
+      <h2>Fusion Spec: Kindling dashboard</h2>
+      <p class="meta"><strong>Anchor era:</strong> 2010s Material Design (Google I/O, 25 June 2014 — verified this session), not 2010s flat pastel-gradient SaaS.<br>
+      <strong>Intensity:</strong> subtle nod (warm paper + elevation; no costume chrome).<br>
+      <strong>Assumed, because the brief said “just try something”:</strong> low-stakes Mode 2a. “Warm and inviting” is read as Material’s paper/ink metaphor on a warm surface, not as a license for blob-and-card kitsch. Roboto (Christian Robertson, 2011, Android Ice Cream Sandwich; later Material’s recommended face) is the era-native UI type.<br>
+      <strong>Frontend-design skill:</strong> available this session; used as the usability cross-check.</p>
+
+      <h3>Layer Map</h3>
+      <table class="spec-table">
+        <thead><tr><th>Layer</th><th>Source</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Display typography</td><td>era (2010s)</td><td>Roboto 400 at 24px for the page title — Material’s “bold graphic” is scale and weight, not a second display family. Avoided geometric-sans revival clichés (Poppins/Inter/DM Sans).</td></tr>
+          <tr><td>Body/UI typography</td><td>era / modern</td><td>Roboto 400–500. This is one of the rare cases where body type can stay era-native: Roboto was designed for screens.</td></tr>
+          <tr><td>Color</td><td>era, warmth from the brief</td><td>Deep forest primary on warm paper. Not Material’s default 2014 rainbow, not pastel blobs, not terracotta #D97757. Error red only on the overdue chip.</td></tr>
+          <tr><td>Grid/spatial rhythm</td><td>era</td><td>App bar / 8dp grid / 16dp card gutters. Cards are 4px radius (Material, not 16px squircles).</td></tr>
+          <tr><td>Texture/ornament</td><td>era (elevation, not illustration)</td><td>No gradient blobs, no illustration confetti. Signal is 2dp/8dp shadows from the 2014 elevation model.</td></tr>
+          <tr><td>Motion</td><td>era / modern</td><td>200ms standard deceleration curve. 2010s is late enough that Material’s motion language is native, not invented.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Token Sheet</h3>
+      <table class="spec-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Source/rationale</th></tr></thead>
+        <tbody>
+          <tr><td>color/primary</td><td>#1B3A2F</td><td>Warm-inviting forest; white on it is 12.40:1. Not a pastel.</td></tr>
+          <tr><td>color/accent</td><td>#1565C0</td><td>Material Blue 800 for focus rings only (5.19:1 on paper). Not a decorative blob.</td></tr>
+          <tr><td>color/background</td><td>#F6F3EE</td><td>Warm paper/ink surface. Cooler than cream-terracotta slop.</td></tr>
+          <tr><td>color/text</td><td>#3E2723</td><td>Brown 900 ink, 12.49:1 on background.</td></tr>
+          <tr><td>spacing/scale</td><td>4 / 8 / 16 / 24 / 32 / 48 / 64px</td><td>modern / Material 8dp grid, always</td></tr>
+          <tr><td>radius</td><td>4px cards, 24px FAB</td><td>2014 Material defaults, not 12–16px SaaS cards.</td></tr>
+          <tr><td>shadow/elevation</td><td>2dp cards; 8dp FAB (values in CSS)</td><td>Actual Material elevation, the anti-slop alternative to flat pastel cards.</td></tr>
+          <tr><td>motion/duration</td><td>200ms</td><td>modern, always (and era-native here)</td></tr>
+          <tr><td>motion/easing</td><td>cubic-bezier(0.4, 0.0, 0.2, 1)</td><td>Material standard curve.</td></tr>
+          <tr><td>type/display</td><td>Roboto, 400, 24px</td><td>Robertson, 2011 — verified this session.</td></tr>
+          <tr><td>type/body</td><td>Roboto, 400–500</td><td>same family</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Accessibility Verification</h3>
+      <table class="spec-table">
+        <thead><tr><th>Check</th><th>Requirement</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Body text contrast</td><td>≥ 4.5:1 (WCAG 1.4.3)</td><td>12.49:1 (#3E2723 on #F6F3EE); muted #5D4037 = 8.42:1 — ✅</td></tr>
+          <tr><td>Large text / display contrast</td><td>≥ 3:1 (WCAG 1.4.3)</td><td>12.49:1 — ✅</td></tr>
+          <tr><td>UI component contrast</td><td>≥ 3:1 (WCAG 1.4.11)</td><td>White on primary 12.40:1 — ✅ · overdue chip #B71C1C on #FDECEA > 4.5:1 for the label — ✅ · focus #1565C0 on paper 5.19:1 — ✅</td></tr>
+          <tr><td>Touch targets</td><td>≥ 44×44px (WCAG 2.5.5)</td><td>Nav rows and FAB 48px — ✅</td></tr>
+          <tr><td>Focus indicator visible</td><td>WCAG 2.4.7</td><td>2px #1565C0 outline — ✅</td></tr>
+          <tr><td>Motion respects <code>prefers-reduced-motion</code></td><td>—</td><td>Transitions disabled when requested — ✅</td></tr>
+          <tr><td>Text-over-ornament contrast (composite, not nominal background)</td><td>≥ 4.5:1 body / 3:1 large (WCAG 1.4.3)</td><td>No ornament under type. Elevation shadows sit outside the text box. Composite equals nominal — ✅</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Rationale</h3>
+      <p>The brief was low-stakes (“just try something”), so this proceeds in Mode 2a with the assumption stated: 2010s means Material’s elevation model, not the flat pastel-blob SaaS look anti-slop.md calls the decade’s default. Warmth comes from paper/ink surfaces and a forest primary, not from terracotta or gradient meshes. Roboto is cited as a 2011 screen face, which is why body type is allowed to stay in-era instead of being swapped for a later humanist.</p>
+    </div>
+  </section>
+</body>
+</html>
