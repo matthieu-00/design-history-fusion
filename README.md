@@ -2,7 +2,7 @@
 
 An agent skill for graphic design and typography history (1900–present), and for applying that history to a modern UI, site, poster, package, or identity.
 
-It exists so “vintage meets modern” is a real blend — named movements, type categories, grid logic — not a costume palette.
+It exists so “vintage meets modern” is a real blend: named movements, type categories, and grid logic, not a costume palette.
 
 The working files are in [`design-history-fusion/`](design-history-fusion/) (`SKILL.md` + `references/` + `evals/`). Claude, Cursor, and OpenCode installs are copies of that folder.
 
@@ -13,7 +13,7 @@ The working files are in [`design-history-fusion/`](design-history-fusion/) (`SK
 | **Research** | A historical question (“what defined Swiss typography,” “when did Futura come out”) | A sourced, movement-level answer. Specific names and years are verified or flagged, not guessed. |
 | **Fusion** | A modern deliverable that should carry period DNA | A **Layer Map**, **Token Sheet**, **Accessibility Verification** table, a short rationale, and a render. |
 
-Fusion does **not** pick one decade and skin the UI in it. It splits the design into layers — display type, body/UI type, color, grid, ornament, motion, accessibility — and each layer can come from a **different era**, or stay fully modern. That mix is the design decision.
+Fusion does **not** pick one decade and skin the UI in it. It splits the design into layers (display type, body/UI type, color, grid, ornament, motion, accessibility). Each layer can come from a **different era**, or stay fully modern. That mix is the design decision.
 
 Example: 1970s phototype for the headline, a Swiss modular grid, contemporary body type, Deco ornament used once, motion and tap targets modern. The skill states that blend before it builds (“typography from X, grid from Y, color from Z”) so you can change one layer without throwing out the rest.
 
@@ -22,7 +22,7 @@ You can also ask it to combine two named directions after it offers options (“
 Two Fusion shapes:
 
 - **Single direction** when you name an era, or you are exploring (“just try something”).
-- **Three directions** when you ask for options, or the brief is high-stakes (final, launching, costly to reverse). The three options differ on era, intensity, or *which layer carries the signal* — not just color.
+- **Three directions** when you ask for options, or the brief is high-stakes (final, launching, costly to reverse). The three options differ on era, intensity, or *which layer carries the signal*, not just color.
 
 Accessibility is never a historical layer.
 
@@ -49,7 +49,7 @@ Invoke with `/design-history-fusion`, or by asking a period-style / “vintage m
 
 ## Usage
 
-Era named — goes straight to one Fusion direction:
+If you name an era, it goes straight to one Fusion direction:
 
 > Redesign our fintech app’s onboarding screen with Swiss Style meeting modern UI.
 
@@ -71,19 +71,19 @@ Each file is a single HTML page (inline CSS, no build): the UI, then the Layer M
 
 <p><img src="examples/screenshots/2-swiss-fintech-onboarding-preview.png" alt="Canton onboarding screen in Swiss International Style" width="880"></p>
 
-[Eval 2](examples/2-swiss-fintech-onboarding.html) · **Swiss / International Style** — fintech onboarding. Neo-grotesque type, modular grid, one hard-edged red square kept clear of type.
+[Eval 2](examples/2-swiss-fintech-onboarding.html) · **Swiss / International Style.** Fintech onboarding. Neo-grotesque type, modular grid, one hard-edged red square kept clear of type.
 
 <p><img src="examples/screenshots/4-art-deco-ecommerce-options-preview.png" alt="Three Art Deco directions for the Nord shop" width="880"></p>
 
-[Eval 4](examples/4-art-deco-ecommerce-options.html) · **1920s Art Deco** — three directions (signal in the edge / Cassandre restraint / ceremony), then the steel vanishing-point shop, not gold sunburst.
+[Eval 4](examples/4-art-deco-ecommerce-options.html) · **1920s Art Deco.** Three directions (signal in the edge / Cassandre restraint / ceremony), then the steel vanishing-point shop, not gold sunburst.
 
 <p><img src="examples/screenshots/5-1970s-record-label-hero-preview.png" alt="Radia record label hero with phototype headline over a sunburst" width="880"></p>
 
-[Eval 5](examples/5-1970s-record-label-hero.html) · **1970s phototype** + requested Deco sunburst — headline on a documented scrim so rays do not kill contrast.
+[Eval 5](examples/5-1970s-record-label-hero.html) · **1970s phototype** plus a requested Deco sunburst. Headline sits on a documented scrim so rays do not kill contrast.
 
 <p><img src="examples/screenshots/6-2010s-saas-dashboard-preview.png" alt="Kindling dashboard using 2010s Material elevation" width="880"></p>
 
-[Eval 6](examples/6-2010s-saas-dashboard.html) · **2010s Material Design** — paper/ink elevation, not pastel-gradient SaaS.
+[Eval 6](examples/6-2010s-saas-dashboard.html) · **2010s Material Design.** Paper/ink elevation, not pastel-gradient SaaS.
 
 ## Sources and logic
 
