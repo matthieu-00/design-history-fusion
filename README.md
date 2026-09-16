@@ -1,142 +1,105 @@
 # Design History Fusion
 
-An agent skill that combines historically accurate graphic-design and typography research (1900–present) with modern UI application. It exists so “vintage meets modern” work is grounded in a real movement — dates, type categories, grid logic — instead of a costume palette.
+An agent skill for graphic design and typography history (1900–present), and for applying that history to a modern UI, site, poster, package, or identity.
 
-This repository packages **one canonical skill** (`design-history-fusion/`) for Claude, Cursor, and OpenCode without forking or paraphrasing the source. Edit that folder; run `node scripts/sync-packages.mjs` to recopy it.
+It exists so “vintage meets modern” is a real blend — named movements, type categories, grid logic — not a costume palette.
+
+The working files are in [`design-history-fusion/`](design-history-fusion/) (`SKILL.md` + `references/` + `evals/`). Claude, Cursor, and OpenCode installs are copies of that folder.
 
 ## What it does
 
-Two modes, chosen by a written decision procedure (not a vibe):
-
 | Mode | When | What you get |
 |---|---|---|
-| **Research** | Factual / historical questions (“what defined Swiss typography,” “when did Futura come out”) | A sourced, movement-level answer. Specific names, years, and foundries are verified or flagged — not guessed. |
-| **Fusion** | Apply a period’s DNA to a modern app, site, poster, package, identity, or editorial | A **Layer Map** (which layer is historical vs modern), a **Token Sheet** (real hex/spacing/type values), an **Accessibility Verification** table, a short rationale, and a render. |
+| **Research** | A historical question (“what defined Swiss typography,” “when did Futura come out”) | A sourced, movement-level answer. Specific names and years are verified or flagged, not guessed. |
+| **Fusion** | A modern deliverable that should carry period DNA | A **Layer Map**, **Token Sheet**, **Accessibility Verification** table, a short rationale, and a render. |
 
-Fusion is a layered translation, not “skin this UI in the 1970s.” Typography, color, grid, ornament, and motion can each pull from a different decade — or stay fully contemporary. Accessibility is never a historical layer.
+Fusion does **not** pick one decade and skin the UI in it. It splits the design into layers — display type, body/UI type, color, grid, ornament, motion, accessibility — and each layer can come from a **different era**, or stay fully modern. That mix is the design decision.
 
-Fusion itself splits:
+Example: 1970s phototype for the headline, a Swiss modular grid, contemporary body type, Deco ornament used once, motion and tap targets modern. The skill states that blend before it builds (“typography from X, grid from Y, color from Z”) so you can change one layer without throwing out the rest.
 
-- **2a — single direction** when the era is named, or the brief is low-stakes exploration.
-- **2b — three directions** when options are requested, or the brief is high-stakes (final, launching, costly to reverse). The three options must differ on era, intensity, or *which layer carries the signal* — not just color.
+You can also ask it to combine two named directions after it offers options (“take the Cassandre type from 2 and the quiet grid from 1”).
 
-References under `design-history-fusion/references/` are the rigor standard (`timeline.md`, `anti-slop.md`, `fusion-playbook.md`, `output-templates.md`). Read those; don’t improvise the tables.
+Two Fusion shapes:
+
+- **Single direction** when you name an era, or you are exploring (“just try something”).
+- **Three directions** when you ask for options, or the brief is high-stakes (final, launching, costly to reverse). The three options differ on era, intensity, or *which layer carries the signal* — not just color.
+
+Accessibility is never a historical layer.
 
 ## Install
 
-Clone the repo, then copy the **skill folder** (`design-history-fusion/`, the one that contains `SKILL.md`) to the location your tool reads.
-
-### Claude Code
-
-Personal (every project):
+Clone, then copy the **skill folder** (the inner `design-history-fusion/` that contains `SKILL.md`), not the whole repo.
 
 ```bash
-git clone https://github.com/<you>/design-history-fusion.git
-cp -R design-history-fusion/design-history-fusion ~/.claude/skills/design-history-fusion
+git clone https://github.com/matthieu-00/design-history-fusion.git
+cd design-history-fusion
 ```
 
-PowerShell:
+| Tool | Where to put it |
+|---|---|
+| **Claude Code** (every project) | `cp -R design-history-fusion ~/.claude/skills/design-history-fusion` |
+| **Claude Code** (this repo) | Already at `.claude/skills/design-history-fusion/` |
+| **claude.ai** | Zip the inner `design-history-fusion/` folder (SKILL.md at archive root’s first directory), upload under Customize → Skills. Code execution must be on. Do not zip the git repo. |
+| **Cursor** | Already at `.cursor/skills/design-history-fusion/` plus rule `.cursor/rules/design-history-fusion.mdc`. Personal: copy the skill folder to `~/.cursor/skills/design-history-fusion` |
+| **OpenCode** | Already at `.opencode/skills/design-history-fusion/`. Global: `~/.config/opencode/skills/design-history-fusion` |
 
-```powershell
-Copy-Item -Recurse .\design-history-fusion ~/.claude/skills/design-history-fusion
-```
+On Windows, `Copy-Item -Recurse .\design-history-fusion $HOME\.claude\skills\design-history-fusion` is the Claude Code equivalent.
 
-Project-scoped: this repo already contains `.claude/skills/design-history-fusion/` (a synced copy). Opening the repo in Claude Code is enough; or copy that folder into another project’s `.claude/skills/`.
+Invoke with `/design-history-fusion`, or by asking a period-style / “vintage meets modern” question.
 
-Invoke with `/design-history-fusion` or by asking a design-history / fusion question — the `description` field is written to auto-trigger.
+## Usage
 
-### claude.ai custom skills
-
-1. Enable code execution under Settings → Capabilities.
-2. Zip the skill folder so the archive root is the folder itself:
-
-   ```text
-   design-history-fusion.zip
-    └── design-history-fusion/
-         ├── SKILL.md
-         ├── references/
-         └── evals/
-   ```
-
-   Do not zip the whole git repo (README, examples, and tool-specific packages do not belong in the upload).
-3. Upload under Customize → Skills and enable the skill.
-
-Claude.ai and Claude Code do not sync skills automatically.
-
-### Cursor
-
-This repo already includes:
-
-- **Skill:** `.cursor/skills/design-history-fusion/` (byte-identical copy of the canonical folder)
-- **Rule:** `.cursor/rules/design-history-fusion.mdc` (points at the skill; does not restate `references/`)
-
-Clone and open the project, or copy those two paths into another repo. For a personal install:
-
-```bash
-cp -R design-history-fusion ~/.cursor/skills/design-history-fusion
-```
-
-The rule is `alwaysApply: false` — attach it when the task is design history or a period-styled UI, or @-mention it. Do not paraphrase the skill into a second document; the rule’s only job is to load `SKILL.md` and the references it names.
-
-### OpenCode
-
-Project install is already at `.opencode/skills/design-history-fusion/`. Global:
-
-```bash
-cp -R design-history-fusion ~/.config/opencode/skills/design-history-fusion
-```
-
-OpenCode also discovers `.claude/skills/` and `~/.claude/skills/`. Folder name and `name:` frontmatter must stay `design-history-fusion`.
-
-After editing the canonical skill, keep packages identical:
-
-```bash
-node scripts/sync-packages.mjs
-```
-
-## Usage example
-
-Era named, so Fusion mode 2a — no “which decade do you want?” question:
+Era named — goes straight to one Fusion direction:
 
 > Redesign our fintech app’s onboarding screen with Swiss Style meeting modern UI.
 
-Expected shape of the reply (see `examples/2-swiss-fintech-onboarding.html`):
+Eras combined across layers:
 
-1. Read `references/timeline.md` (and the fusion/anti-slop files) before making type or grid claims.
-2. State the blend: neo-grotesque type and modular grid from Swiss Style; spacing, motion, and tap targets modern; ornament limited to one geometric accent.
-3. Fill the Layer Map, Token Sheet, and Accessibility Verification tables from `references/output-templates.md` — including the text-over-ornament composite row.
-4. Render the screen. Do not substitute American Mid-Century starbursts or rounded photo-cards for Swiss grid discipline.
+> Swiss grid and neo-grotesque UI type, 1920s Cassandre poster color and a single star mark, modern motion. E-commerce PLP.
 
-If the user had instead said “give me a few directions” (eval 4) or “this launches next month, no room to redo it” (high stakes), the skill offers **three** compact options and waits for a pick before building tokens.
+Options, then a mix:
+
+> Give me a few Art Deco directions for this shop. I want to look through them.
+>
+> *(after it replies)* Combine the type from 2 with the quieter ornament from 1.
+
+A full Fusion reply fills the tables in [`references/output-templates.md`](design-history-fusion/references/output-templates.md) and then renders. See [`examples/2-swiss-fintech-onboarding.html`](examples/2-swiss-fintech-onboarding.html).
 
 ## Examples
 
-Four Fusion evals, rendered as single-file HTML (inline CSS, no build step). Each page is the UI **plus** the required spec tables.
+Each file is a single HTML page (inline CSS, no build): the UI, then the Layer Map / Token Sheet / Accessibility tables. Captions name the **anchor** era; other layers may be modern or from a second period.
 
-![Canton onboarding — Swiss / International Style, modular grid, neo-grotesque type.](examples/screenshots/2-swiss-fintech-onboarding.png)
+<p><img src="examples/screenshots/2-swiss-fintech-onboarding-preview.png" alt="Canton onboarding screen in Swiss International Style" width="880"></p>
 
-**Eval 2 · Swiss / International Style** — fintech onboarding for Canton. Confident intensity; hard-edged red square kept clear of type.
+[Eval 2](examples/2-swiss-fintech-onboarding.html) · **Swiss / International Style** — fintech onboarding. Neo-grotesque type, modular grid, one hard-edged red square kept clear of type.
 
-![Nord storefront — three Art Deco directions, then Cassandre restraint rendered.](examples/screenshots/4-art-deco-ecommerce-options.png)
+<p><img src="examples/screenshots/4-art-deco-ecommerce-options-preview.png" alt="Three Art Deco directions for the Nord shop" width="880"></p>
 
-**Eval 4 · 1920s Art Deco** — three options (edge signal / Cassandre restraint / ceremony), then Option 2 built: steel, vanishing point, no gold sunburst.
+[Eval 4](examples/4-art-deco-ecommerce-options.html) · **1920s Art Deco** — three directions (signal in the edge / Cassandre restraint / ceremony), then the steel vanishing-point shop, not gold sunburst.
 
-![Radia hero — 1970s phototype headline over a Deco sunburst with a documented scrim.](examples/screenshots/5-1970s-record-label-hero.png)
+<p><img src="examples/screenshots/5-1970s-record-label-hero-preview.png" alt="Radia record label hero with phototype headline over a sunburst" width="880"></p>
 
-**Eval 5 · 1970s NY School phototype** — record-label hero with a heavy Deco sunburst *behind* the headline. Stacking-order regression: cream-on-gold is 1.64:1; a 92% scrim brings the composite to 15.44:1. **Check this screenshot by eye before treating the eval as passed.**
+[Eval 5](examples/5-1970s-record-label-hero.html) · **1970s phototype** + requested Deco sunburst — headline on a documented scrim so rays do not kill contrast.
 
-![Kindling dashboard — 2010s Material elevation on warm paper, not pastel blobs.](examples/screenshots/6-2010s-saas-dashboard.png)
+<p><img src="examples/screenshots/6-2010s-saas-dashboard-preview.png" alt="Kindling dashboard using 2010s Material elevation" width="880"></p>
 
-**Eval 6 · 2010s Material Design** — low-stakes “just try something.” Assumed current: paper/ink elevation (2014), not flat pastel-gradient SaaS.
+[Eval 6](examples/6-2010s-saas-dashboard.html) · **2010s Material Design** — paper/ink elevation, not pastel-gradient SaaS.
 
-Regenerate screenshots after editing an example (Playwright; Chromium is downloaded on first `npx playwright install chromium`):
+## Sources and logic
 
-```bash
-npm install
-npx playwright install chromium
-npm run screenshots
-```
+This is the skill, not a summary of it:
+
+| File | What it is |
+|---|---|
+| [`design-history-fusion/SKILL.md`](design-history-fusion/SKILL.md) | Modes, 2a vs 2b, layer-by-layer fusion (including mixing eras) |
+| [`references/timeline.md`](design-history-fusion/references/timeline.md) | Decade-by-decade movements and principles |
+| [`references/typography-atlas.md`](design-history-fusion/references/typography-atlas.md) | Type categories and pairings |
+| [`references/fusion-playbook.md`](design-history-fusion/references/fusion-playbook.md) | Layer map, stacking, accessibility |
+| [`references/anti-slop.md`](design-history-fusion/references/anti-slop.md) | Cliché table and pre-render checks |
+| [`references/output-templates.md`](design-history-fusion/references/output-templates.md) | Required output tables |
+| [`references/sources.md`](design-history-fusion/references/sources.md) | Archives to search (Fonts In Use, Letterform Archive, …) |
+| [`evals/evals.json`](design-history-fusion/evals/evals.json) | Prompts the skill is tested against |
 
 ## License
 
-MIT. See [LICENSE](LICENSE). Contributions: [CONTRIBUTING.md](CONTRIBUTING.md) — if you edit `references/timeline.md`, bump its **Last reviewed** date.
+MIT. See [LICENSE](LICENSE). If you change `references/timeline.md`, bump its **Last reviewed** date ([CONTRIBUTING.md](CONTRIBUTING.md)).

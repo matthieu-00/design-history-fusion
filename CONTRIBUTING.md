@@ -33,3 +33,16 @@ Do not treat the last-reviewed date as a license to skip live verification. Per 
 - Do not invent typeface names, designers, or exact years. If a fact is not in `timeline.md` and was not verified this session, say so.
 - Fusion example pages under `examples/` are demonstrations of Mode 2 output. If you add or regenerate one, keep the Layer Map, Token Sheet, and Accessibility Verification tables from `references/output-templates.md` in the HTML — the visual alone is not the deliverable.
 - Eval 5 (`examples/5-1970s-record-label-hero.html`) is a stacking-order regression (ornament vs. headline). Screenshot review of `examples/screenshots/5-1970s-record-label-hero.png` is a human check, not an automated pass/fail.
+
+## Screenshots
+
+Full-page captures (UI + spec tables) and shorter README previews:
+
+```bash
+npm install
+npx playwright install chromium
+npm run screenshots
+```
+
+Previews clip from the top of the page to `#spec` (capped at 920px) so GitHub does not embed three-thousand-pixel scrolls.
+

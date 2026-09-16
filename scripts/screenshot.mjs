@@ -22,6 +22,15 @@ for (const file of pages) {
   const dest = path.join(outDir, file.replace(/\.html$/, ".png"));
   await page.screenshot({ path: dest, fullPage: true });
   console.log("wrote", dest);
+
+  const spec = await page.locator("#spec").boundingBox();
+  const previewHeight = Math.min(Math.max((spec?.y ?? 900) - 8, 480), 920);
+  const preview = dest.replace(/\.png$/, "-preview.png");
+  await page.screenshot({
+    path: preview,
+    clip: { x: 0, y: 0, width: 1440, height: previewHeight },
+  });
+  console.log("wrote", preview);
 }
 
 await browser.close();
