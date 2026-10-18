@@ -231,8 +231,14 @@
           <tr><td>shadow/elevation</td><td>none — era doesn't use elevation</td><td>The scrim is opacity, not a drop shadow.</td></tr>
           <tr><td>motion/duration</td><td>220ms</td><td>modern, always</td></tr>
           <tr><td>motion/easing</td><td>ease-out</td><td>modern, always</td></tr>
-          <tr><td>type/display</td><td>Big Shoulders Display, 900</td><td>Phototype-condensed category; see Layer Map for 1970 citation.</td></tr>
-          <tr><td>type/body</td><td>Source Sans 3, 400–700</td><td>modern</td></tr>
+          <tr><td>type/display</td><td>Big Shoulders Display, 900</td><td>Google Fonts stand-in. Historical reference, not loaded: ITC Avant Garde Gothic, 1970.</td></tr>
+          <tr><td>type/display-size</td><td>clamp(52px, 10vw, 108px)</td><td></td></tr>
+          <tr><td>type/display-line-height</td><td>0.82</td><td></td></tr>
+          <tr><td>type/display-tracking</td><td>−0.02em</td><td></td></tr>
+          <tr><td>type/body</td><td>Source Sans 3, 400–700</td><td>Google Fonts. Modern body.</td></tr>
+          <tr><td>type/body-size</td><td>18px</td><td></td></tr>
+          <tr><td>type/body-line-height</td><td>normal</td><td>Not set on the standfirst. Inherits the browser default.</td></tr>
+          <tr><td>type/body-tracking</td><td>0</td><td></td></tr>
         </tbody>
       </table>
 
@@ -243,7 +249,7 @@
           <tr><td>Body text contrast</td><td>≥ 4.5:1 (WCAG 1.4.3)</td><td>17.39:1 (#F6F1E8 on #0C0C0C) — ✅</td></tr>
           <tr><td>Large text / display contrast</td><td>≥ 3:1 (WCAG 1.4.3)</td><td>15.44:1 as rendered on the scrim composite — ✅</td></tr>
           <tr><td>UI component contrast</td><td>≥ 3:1 (WCAG 1.4.11)</td><td>Play button #F6F1E8 fill / #0C0C0C label = 17.39:1 — ✅ · ghost border cream on black 17.39:1 — ✅ · yellow rays vs black field 10.61:1 (non-text) — ✅</td></tr>
-          <tr><td>Touch targets</td><td>≥ 44×44px (WCAG 2.5.5)</td><td>Both CTAs min 48×48 — ✅</td></tr>
+          <tr><td>Touch targets</td><td>≥ 24×24px AA (WCAG 2.2, 2.5.8). 44×44px is AAA (2.5.5), recommended.</td><td>Both CTAs min 48×48 — ✅</td></tr>
           <tr><td>Focus indicator visible</td><td>WCAG 2.4.7</td><td>2px cream outline, 3px offset — ✅</td></tr>
           <tr><td>Motion respects <code>prefers-reduced-motion</code></td><td>—</td><td>Transitions disabled when requested — ✅</td></tr>
           <tr><td>Text-over-ornament contrast (composite, not nominal background)</td><td>≥ 4.5:1 body / 3:1 large (WCAG 1.4.3)</td><td><strong>Without scrim:</strong> #F6F1E8 on #E8B923 = 1.64:1 — ❌ (the stacking bug).<br><strong>With documented treatment:</strong> 92% #0C0C0C scrim over the gold mix yields composite background #1E1A0E; #F6F1E8 on #1E1A0E = 15.44:1 — ✅. z-index: sunburst 0, scrim 1, type 2. The sunburst still occupies the headline’s viewport region (heavy, as requested) but does not paint through the glyphs.</td></tr>

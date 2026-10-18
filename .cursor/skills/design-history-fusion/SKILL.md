@@ -12,8 +12,8 @@ Combines historically accurate design/typography research with modern UI/UX appl
 1. Read `references/timeline.md` — condensed decade-by-decade data (movements, typography, grid/color/layout principles, key figures).
 2. If the task needs a specific typeface's exact release year, designer, or a specific hex/measurement — do not guess from the bundled file. Use `web_search` against the sources listed in `references/sources.md` (Fonts In Use, Letterform Archive, Design Reviewed, TM Research Archive) to verify before stating it as fact. The bundled reference is a scaffold for *movements and principles*, not a citation-grade fact database.
 3. For applied/visual work (mockups, redesigns), also read `references/fusion-playbook.md` and `references/output-templates.md` before writing any code — output structure (layer map, token sheet, accessibility table) is templated, not improvised per session.
-4. For applied visual work also check `/mnt/skills/public/frontend-design/SKILL.md` for current styling/token constraints — fusion output still has to be usable, real UI, not a pastiche. **If that skill isn't present in this environment** (it's bundled with some Claude surfaces but not guaranteed on every install), fall back to standard web accessibility/contrast practice and note in the output that the frontend-design cross-check was unavailable rather than silently skipping it.
-5. Before finalizing any Fusion output (2a or 2b), run the self-check in `references/anti-slop.md`. This is not optional polish — an era choice that lands on the same cliché every time isn't actually doing the historical research this skill exists for.
+4. For applied visual work, follow a skill named `frontend-design` when it is installed (some Claude surfaces ship it at `/mnt/skills/public/frontend-design/SKILL.md`; other environments use the same name elsewhere). Fusion output still has to be usable, real UI, not a pastiche. If that skill isn't present, fall back to standard web accessibility and contrast practice and note in the output that the frontend-design cross-check was unavailable rather than silently skipping it.
+5. Before presenting Mode 2b options, or before rendering a single direction, run questions 1–3 in `references/anti-slop.md`. Run question 4 (text over ornament) only after a render exists. An era choice that lands on the same cliché every time isn't actually doing the historical research this skill exists for.
 
 ## Mode 1 — Research
 
@@ -21,8 +21,17 @@ Someone asks a factual/historical question ("what defined Swiss typography," "wh
 
 - Answer from `references/timeline.md` and `references/typography-atlas.md` for movement-level and category-level claims.
 - Verify specific dates/names/attributions via web_search before stating them if precision matters (a person is about to use this in a deliverable, cite a source, or the claim is a specific number/name).
-- If the person wants to *see* examples, point them to the specific archive and query to run there (Fonts In Use is best for typeface-in-context; Design Reviewed for scanned artefacts; TM Research Archive for 1970s–90s Swiss). Don't fabricate example images — direct to the real archive or use image_search for public-domain/period photography.
+- If the person wants to *see* examples, point them to the specific archive and the query to run there (Fonts In Use is best for typeface-in-context; Design Reviewed for scanned artefacts; TM Research Archive for Swiss work from 1960–1990). Don't fabricate example images, and don't depend on an image-search tool. Link the archive.
 - Keep answers precise and sourced. No padding.
+
+## Identifying a period from an image or description
+
+Someone asks "what movement is this?" Use the identification template in `references/output-templates.md`.
+
+- Name the closest anchor movement or decade.
+- Name the lookalike it is not, using the cliché table in `references/anti-slop.md`.
+- Say what still has to be verified (a typeface name, a date, a designer) before it can be cited as fact.
+- Revivals are normal. Give the anchor plus that caveat, not a single decade as if it were certain.
 
 ## Choosing 2a vs 2b — decision procedure
 
@@ -37,6 +46,8 @@ Don't default to asking "what era do you want?" before starting — reacting to 
 
 ## Mode 2a — Fusion, single direction
 
+The era is already named, or the brief is low-stakes exploration. Do not offer three directions. Follow Fusion mechanics below from step 1, then fill the single-direction template in `references/output-templates.md`. For a screen, render one self-contained HTML file. For a poster, package, or editorial spread, follow the print branch in `references/fusion-playbook.md`.
+
 ## Mode 2b — Fusion, three directions
 
 When triggered (see decision procedure above), the three options must differ on more than surface color — vary at least one of these axes per option so they're genuinely distinct choices, not three skins of the same idea:
@@ -46,7 +57,7 @@ When triggered (see decision procedure above), the three options must differ on 
 
 For each of the three, give: era/anchor name, one-line rationale for why it fits this brief specifically, and a compact layer-map summary (typography / color / grid / ornament / motion — one clause each, not the full worked-example format). Keep each option to 4-6 lines total. Do not build all three — describe them, then let the person pick (or say "combine elements of 1 and 3," which is a legitimate response to expect) before rendering anything.
 
-Once they pick, proceed through Mode 2a steps 2 onward for the chosen direction only.
+Once they pick, follow Fusion mechanics from step 2 for the chosen direction only.
 
 ## Fusion mechanics (used by both 2a and 2b)
 
@@ -66,14 +77,14 @@ This is a layered translation problem, not a single "pick a vibe" step. Historic
    - Color system
    - Grid/spatial rhythm
    - Texture/ornament/iconography
-   - Interaction & motion (near-always modern; historical movements predate screens)
+   - Interaction & motion (modern when the anchor predates the web; a 2000s-or-later screen era may use its own motion language)
    - Accessibility/usability layer (always modern — never sacrifice contrast, tap targets, or legibility for period accuracy; note in `fusion-playbook.md` for the standard workarounds)
 
 4. **State the blend explicitly** before building: "Typography anchored in [era], grid/spacing modern, color from [era], motion modern." This is the spec — confirm or adjust with the user if the brief was ambiguous, otherwise proceed.
 
-5. **Run the anti-slop self-check** (`references/anti-slop.md`) — confirm the era choice isn't the table's "overused cliché" row without a stated reason, and confirm the palette/layout wouldn't pass for a generic AI-design default regardless of era.
+5. **Run the anti-slop cliché check** (`references/anti-slop.md`, questions 1–3) — confirm the era choice isn't the table's "overused cliché" row without a stated reason, and confirm the palette/layout wouldn't pass for a generic AI-design default regardless of era. Do this before a Mode 2b option list and again before a single-direction render.
 
-6. **Render it.** Use the frontend-design skill's constraints for actual code/tokens. Use `visualize:show_widget` for a quick inline exploration, or full artifact/file creation (per file-creation rules) if it's a deliverable the person will keep/iterate on. Fill out the Fusion Spec template from `references/output-templates.md` alongside the render — layer map, token sheet, accessibility verification. This isn't optional documentation; the token sheet is what makes the render buildable by someone else, and the accessibility table is what proves it (rather than asserts it).
+6. **Render a screen as one self-contained HTML file.** If a `frontend-design` skill is available, use its constraints for code and tokens. Do not call `visualize:show_widget` or any image-search tool. Fill out the Fusion Spec template from `references/output-templates.md` alongside the render — layer map, token sheet, accessibility verification. This isn't optional documentation; the token sheet is what makes the render buildable by someone else, and the accessibility table is what proves it (rather than asserts it). Then run anti-slop question 4 on the rendered composite. A poster, package, or editorial spread follows the print branch in `references/fusion-playbook.md` instead of inventing screen motion.
 
 7. **Annotate the output** with a short rationale mapping each visual choice back to its era and source (2–4 lines, not an essay) — this is what makes the fusion feel designed rather than decorative.
 

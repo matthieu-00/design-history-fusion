@@ -19,6 +19,20 @@ Use these so output is structurally comparable across sessions and projects, not
 
 ---
 
+## Template — Identify a period
+
+```markdown
+## [What this is]
+**Closest anchor:** [movement/decade]
+**It is not:** [the lookalike from anti-slop.md]
+**What it actually shows:** [2–4 sentences: type category, grid, color, ornament]
+
+**Verify before citing:** [typeface name, date, designer]
+**Where to compare:** [archive + query]
+```
+
+---
+
 ## Template — Fusion, single direction (Mode 2a)
 
 ```markdown
@@ -35,7 +49,7 @@ Use these so output is structurally comparable across sessions and projects, not
 | Color | [era / modern] | [see token sheet below] |
 | Grid/spatial rhythm | [era / modern] | [structure description] |
 | Texture/ornament | [era / modern] | [signature element, used once] |
-| Motion | [era / modern — near-always modern] | [interaction description] |
+| Motion | [era / modern — modern before the web] | [interaction description, or "not a screen"] |
 
 ### Token Sheet
 | Token | Value | Source/rationale |
@@ -44,13 +58,19 @@ Use these so output is structurally comparable across sessions and projects, not
 | color/accent | #[hex] | |
 | color/background | #[hex] | |
 | color/text | #[hex] | |
-| spacing/scale | [e.g. 4/8/16/24/32/48/64px] | modern, always |
+| spacing/scale | [e.g. 4/8/16/24/32/48/64px] | modern for a pre-web anchor; a 2000s-or-later screen era may use its own scale |
 | radius | [value] | |
 | shadow/elevation | [values per level, or "none — era doesn't use elevation"] | |
-| motion/duration | [e.g. 150-300ms] | modern, always |
-| motion/easing | [e.g. ease-out] | modern, always |
-| type/display | [family, weight range] | |
-| type/body | [family, weight range] | |
+| motion/duration | [e.g. 150-300ms, or "not a screen"] | modern before the web; era-native only when that era has a screen motion language |
+| motion/easing | [e.g. ease-out, or "not a screen"] | same as duration |
+| type/display | [Google Fonts family, weight] | Historical reference, not loaded: [face]. Stand-in from Google Fonts, same category. |
+| type/display-size | [px or rem] | |
+| type/display-line-height | [unitless or length] | |
+| type/display-tracking | [em] | |
+| type/body | [Google Fonts family, weight range] | |
+| type/body-size | [px or rem] | |
+| type/body-line-height | [unitless or length] | |
+| type/body-tracking | [em] | |
 
 ### Accessibility Verification
 | Check | Requirement | Result |
@@ -58,12 +78,14 @@ Use these so output is structurally comparable across sessions and projects, not
 | Body text contrast | ≥ 4.5:1 (WCAG 1.4.3) | [ratio] — ✅/❌ |
 | Large text / display contrast | ≥ 3:1 (WCAG 1.4.3) | [ratio] — ✅/❌ |
 | UI component contrast | ≥ 3:1 (WCAG 1.4.11) | [ratio] — ✅/❌ |
-| Touch targets | ≥ 44x44px (WCAG 2.5.5) | ✅/❌ |
+| Touch targets | ≥ 24×24px AA (WCAG 2.2, 2.5.8). 44×44px is AAA (2.5.5) and the recommended target. | ✅/❌ — [which level] |
 | Focus indicator visible | WCAG 2.4.7 | ✅/❌ |
 | Motion respects `prefers-reduced-motion` | — | ✅/❌ |
 | Text-over-ornament contrast (composite, not nominal background) | ≥ 4.5:1 body / 3:1 large (WCAG 1.4.3) | [ratio] — ✅/❌ |
 
 If anything fails: state the fix applied (e.g., "darkened accent from #X to #Y to pass AA") — a documented adjustment, not a silent one.
+
+On a poster, package, or editorial spread, set motion, touch-target, and focus rows to "not a screen."
 
 ### Rationale
 [2-4 lines mapping choices back to sources/brief — not an essay]

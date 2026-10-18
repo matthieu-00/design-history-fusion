@@ -36,5 +36,6 @@ This table (and Vox-ATypI generally) only classifies Latin-script typefaces. Jap
 - Period **color + texture** with a fully modern **grotesque/geometric sans** typeface — signal comes from palette and ornament, not the letterforms, which is often the more usable choice for dense UI.
 - Avoid pairing two loud display eras together (e.g., 1970s slab + 1980s deconstructed) unless the brief explicitly wants maximalist collage — it reads as noise rather than intentional fusion.
 
-## Watch list — combos that started deliberate and are becoming this skill's own default
-Fraunces (display) + Inter (body) is a genuinely good pairing and was the right call for Manna's 1970s option — but it's also the single most common "vintage-meets-modern" font pairing in AI design output right now, this skill included. If a session reaches for it again without a specific reason tied to that era/brief, treat that as the same flattening problem covered in `references/anti-slop.md`, not a safe default. Rotate: Fraunces isn't the only warm/period-adjacent display face — consider what the specific era's typography atlas entry actually calls for (slab, geometric sans, Didone, script) before reaching for the familiar choice.
+## What to cite vs what to load
+
+Name the historical face as the era reference. Load the webfont from Google Fonts, in the same category, and write both into the token sheet (`references/sources.md`). Fraunces as display and Inter as body is a common "vintage meets modern" pairing in AI design output. It is not a default. If the era calls for a slab, a geometric sans, a Didone, or a script, load that category instead.

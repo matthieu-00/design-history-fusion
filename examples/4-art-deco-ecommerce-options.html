@@ -389,8 +389,14 @@
           <tr><td>shadow/elevation</td><td>none — era doesn't use elevation</td><td>Depth is perspective drawing, not Material shadow.</td></tr>
           <tr><td>motion/duration</td><td>240ms</td><td>modern, always</td></tr>
           <tr><td>motion/easing</td><td>ease-out</td><td>modern, always</td></tr>
-          <tr><td>type/display</td><td>League Spartan, 800</td><td>Geometric sans category; Futura 1927 is the cited era face, not this webfont.</td></tr>
-          <tr><td>type/body</td><td>Source Sans 3, 400–700</td><td>modern humanist-adjacent sans for UI.</td></tr>
+          <tr><td>type/display</td><td>League Spartan, 800</td><td>Google Fonts stand-in. Historical reference, not loaded: Futura (Paul Renner, 1927).</td></tr>
+          <tr><td>type/display-size</td><td>clamp(42px, 8vw, 88px)</td><td></td></tr>
+          <tr><td>type/display-line-height</td><td>0.9</td><td></td></tr>
+          <tr><td>type/display-tracking</td><td>0.06em</td><td>Wide caps, Deco proportion.</td></tr>
+          <tr><td>type/body</td><td>Source Sans 3, 400–700</td><td>Google Fonts. Modern body.</td></tr>
+          <tr><td>type/body-size</td><td>16px</td><td></td></tr>
+          <tr><td>type/body-line-height</td><td>normal</td><td>Not set on the subhead. Inherits the browser default.</td></tr>
+          <tr><td>type/body-tracking</td><td>0</td><td></td></tr>
         </tbody>
       </table>
 
@@ -401,7 +407,7 @@
           <tr><td>Body text contrast</td><td>≥ 4.5:1 (WCAG 1.4.3)</td><td>13.58:1 (#E8E4DC on #151B28); muted #C9C3B8 still ≥ 4.5:1 on navy — ✅</td></tr>
           <tr><td>Large text / display contrast</td><td>≥ 3:1 (WCAG 1.4.3)</td><td>13.58:1 — ✅</td></tr>
           <tr><td>UI component contrast</td><td>≥ 3:1 (WCAG 1.4.11)</td><td>White on #9E2A2B = 7.45:1 — ✅</td></tr>
-          <tr><td>Touch targets</td><td>≥ 44×44px (WCAG 2.5.5)</td><td>CTA min-height 48px — ✅</td></tr>
+          <tr><td>Touch targets</td><td>≥ 24×24px AA (WCAG 2.2, 2.5.8). 44×44px is AAA (2.5.5), recommended.</td><td>CTA min-height 48px — ✅</td></tr>
           <tr><td>Focus indicator visible</td><td>WCAG 2.4.7</td><td>2px cream outline, 3px offset — ✅</td></tr>
           <tr><td>Motion respects <code>prefers-reduced-motion</code></td><td>—</td><td>Transitions disabled when requested — ✅</td></tr>
           <tr><td>Text-over-ornament contrast (composite, not nominal background)</td><td>≥ 4.5:1 body / 3:1 large (WCAG 1.4.3)</td><td>Star sits above the headline; rails converge behind the hero but are 2px × 35% opacity and do not enter the type box. Headline reads on the radial steel field (#2A3344 → #0E1218), not on a gold ray. Composite ≥ 13:1 — ✅. Gold sunburst was refused (Option 3 only, and even there as a divider, not under type).</td></tr>

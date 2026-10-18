@@ -301,8 +301,14 @@
           <tr><td>shadow/elevation</td><td>2dp cards; 8dp FAB (values in CSS)</td><td>Actual Material elevation, the anti-slop alternative to flat pastel cards.</td></tr>
           <tr><td>motion/duration</td><td>200ms</td><td>modern, always (and era-native here)</td></tr>
           <tr><td>motion/easing</td><td>cubic-bezier(0.4, 0.0, 0.2, 1)</td><td>Material standard curve.</td></tr>
-          <tr><td>type/display</td><td>Roboto, 400, 24px</td><td>Robertson, 2011 — verified this session.</td></tr>
-          <tr><td>type/body</td><td>Roboto, 400–500</td><td>same family</td></tr>
+          <tr><td>type/display</td><td>Roboto, 400</td><td>Google Fonts. Era-native screen face (Christian Robertson, 2011), so the stand-in and the reference are the same family.</td></tr>
+          <tr><td>type/display-size</td><td>24px</td><td></td></tr>
+          <tr><td>type/display-line-height</td><td>normal</td><td>Not set on the page title.</td></tr>
+          <tr><td>type/display-tracking</td><td>0</td><td></td></tr>
+          <tr><td>type/body</td><td>Roboto, 400–500</td><td>Same family.</td></tr>
+          <tr><td>type/body-size</td><td>14px</td><td></td></tr>
+          <tr><td>type/body-line-height</td><td>normal</td><td>Not set on body copy.</td></tr>
+          <tr><td>type/body-tracking</td><td>0</td><td></td></tr>
         </tbody>
       </table>
 
@@ -313,7 +319,7 @@
           <tr><td>Body text contrast</td><td>≥ 4.5:1 (WCAG 1.4.3)</td><td>12.49:1 (#3E2723 on #F6F3EE); muted #5D4037 = 8.42:1 — ✅</td></tr>
           <tr><td>Large text / display contrast</td><td>≥ 3:1 (WCAG 1.4.3)</td><td>12.49:1 — ✅</td></tr>
           <tr><td>UI component contrast</td><td>≥ 3:1 (WCAG 1.4.11)</td><td>White on primary 12.40:1 — ✅ · overdue chip #B71C1C on #FDECEA > 4.5:1 for the label — ✅ · focus #1565C0 on paper 5.19:1 — ✅</td></tr>
-          <tr><td>Touch targets</td><td>≥ 44×44px (WCAG 2.5.5)</td><td>Nav rows and FAB 48px — ✅</td></tr>
+          <tr><td>Touch targets</td><td>≥ 24×24px AA (WCAG 2.2, 2.5.8). 44×44px is AAA (2.5.5), recommended.</td><td>Nav rows and FAB 48px — ✅</td></tr>
           <tr><td>Focus indicator visible</td><td>WCAG 2.4.7</td><td>2px #1565C0 outline — ✅</td></tr>
           <tr><td>Motion respects <code>prefers-reduced-motion</code></td><td>—</td><td>Transitions disabled when requested — ✅</td></tr>
           <tr><td>Text-over-ornament contrast (composite, not nominal background)</td><td>≥ 4.5:1 body / 3:1 large (WCAG 1.4.3)</td><td>No ornament under type. Elevation shadows sit outside the text box. Composite equals nominal — ✅</td></tr>

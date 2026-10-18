@@ -321,7 +321,7 @@
       <table>
         <thead><tr><th>Layer</th><th>Source</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>Display typography</td><td>era</td><td>Neo-grotesque. IBM Plex Sans is a contemporary neo-grotesque stand-in (not a 1957 face). Era-native references, already in timeline.md: Helvetica (Max Miedinger, 1957) and Univers (Adrian Frutiger, 1957).</td></tr>
+          <tr><td>Display typography</td><td>era</td><td>Neo-grotesque. IBM Plex Sans (Google Fonts) is the file. Historical references, not loaded: Univers (Adrian Frutiger, 1957) and Neue Haas Grotesk (Max Miedinger, 1957). The Helvetica name is Stempel, 1960.</td></tr>
           <tr><td>Body/UI typography</td><td>era / modern weights</td><td>Same neo-grotesque family, modern weight range (400–700) for screen UI. Flush-left / ragged-right.</td></tr>
           <tr><td>Color</td><td>era, contrast-adjusted</td><td>Poster red + black + cool paper. Not warm-cream/terracotta AI default; not American MCM pastels. See token sheet.</td></tr>
           <tr><td>Grid/spatial rhythm</td><td>era, ported to a modern 12-column CSS grid</td><td>Modular columns, hairline rules, active negative space. Swiss grid logic ports directly.</td></tr>
@@ -343,8 +343,14 @@
           <tr><td>shadow/elevation</td><td>none — era doesn't use elevation</td><td>Depth comes from rules and type scale, not drop shadows.</td></tr>
           <tr><td>motion/duration</td><td>180ms</td><td>modern, always</td></tr>
           <tr><td>motion/easing</td><td>ease-out</td><td>modern, always</td></tr>
-          <tr><td>type/display</td><td>IBM Plex Sans, 700, −0.04em tracking</td><td>Neo-grotesque category; see Layer Map for 1957 references.</td></tr>
+          <tr><td>type/display</td><td>IBM Plex Sans, 700</td><td>Google Fonts stand-in. Historical references: Univers, 1957; Neue Haas Grotesk, 1957. Helvetica is the 1960 name.</td></tr>
+          <tr><td>type/display-size</td><td>clamp(40px, 6vw, 72px)</td><td></td></tr>
+          <tr><td>type/display-line-height</td><td>0.95</td><td></td></tr>
+          <tr><td>type/display-tracking</td><td>−0.04em</td><td>Tight neo-grotesque setting.</td></tr>
           <tr><td>type/body</td><td>IBM Plex Sans, 400–600</td><td>Same family at UI sizes.</td></tr>
+          <tr><td>type/body-size</td><td>18px</td><td></td></tr>
+          <tr><td>type/body-line-height</td><td>1.45</td><td></td></tr>
+          <tr><td>type/body-tracking</td><td>0</td><td></td></tr>
         </tbody>
       </table>
 
@@ -355,7 +361,7 @@
           <tr><td>Body text contrast</td><td>≥ 4.5:1 (WCAG 1.4.3)</td><td>16.82:1 (#111111 on #F2F2EE) — ✅ · muted 7.93:1 (#4A4A46 on #F2F2EE) — ✅</td></tr>
           <tr><td>Large text / display contrast</td><td>≥ 3:1 (WCAG 1.4.3)</td><td>16.82:1 — ✅</td></tr>
           <tr><td>UI component contrast</td><td>≥ 3:1 (WCAG 1.4.11)</td><td>White on primary button 7.78:1 — ✅ · ghost border #111111 on #F2F2EE 16.82:1 — ✅</td></tr>
-          <tr><td>Touch targets</td><td>≥ 44×44px (WCAG 2.5.5)</td><td>Buttons and inputs min-height 48px — ✅</td></tr>
+          <tr><td>Touch targets</td><td>≥ 24×24px AA (WCAG 2.2, 2.5.8). 44×44px is AAA (2.5.5), recommended.</td><td>Buttons and inputs min-height 48px — ✅</td></tr>
           <tr><td>Focus indicator visible</td><td>WCAG 2.4.7</td><td>2px #111111 outline, 3px offset — ✅</td></tr>
           <tr><td>Motion respects <code>prefers-reduced-motion</code></td><td>—</td><td>Transitions disabled when requested — ✅</td></tr>
           <tr><td>Text-over-ornament contrast (composite, not nominal background)</td><td>≥ 4.5:1 body / 3:1 large (WCAG 1.4.3)</td><td>Ornament is a 28×28px square in column 12; it does not share a bounding box with any text. Composite check equals nominal 16.82:1 — ✅</td></tr>
